@@ -35,22 +35,61 @@ namespace Homework_3
 
         static void ListUnanswered()
         {
-
+               using (var db = new AppDbContext())
+            {
+                var questions = db.Questions.Include(q => q).Where(q => q.QuestionID);
+                foreach (var q in questions)
+                {
+                    Console.WriteLine(db.ToString());
+                }
+            }
         }
 
         static void AskQuestion()
         {
+            string UserAsk = "";
 
+            Console.WriteLine($"What is your question? ");
+            UserAsk = Console.ReadLine();
+
+            using (var db = new AppDbContext())
+            {
+                Question askQuestion = new Question {QuestionText = UserAsk};
+                // Question.User = db.Users.First();
+                db.Add(UserAsk);
+                db.SaveChanges();
+            }
         }
 
         static void RemoveQuestion()
         {
+            int UserRemove = 0;
 
+            Console.WriteLine($"What is the QuestionID of the question you want to remove? ");
+            UserRemove = Convert.ToInt32(Console.ReadLine());
+
+            using (var db = new AppDbContext())
+            {
+                Question.Find(q => q.QuestionID == UserRemove);
+                db.Remove(UserRemove);
+                db.SaveChanges();
+            }
         }
 
         static void Answer()
         {
+             string UserAnswer = "";
 
+            Console.WriteLine($"Type your answer: ");
+            UserAnswer = Console.ReadLine();
+
+            using (var db = new AppDbContext())
+            {
+                Question answerQuestion = new Question {AnswerText = UserAnswer};
+                // Question.User = db.Users.First();
+                db.Add(UserAnswer);
+                db.SaveChanges();
+            }
         }
 
 

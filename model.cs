@@ -40,7 +40,7 @@ public class AppDbContext : DbContext
     public class Question
     {
         public int QuestionID {get; set;}   // PK
-        public int QuestionText {get; set;}
+        public string QuestionText {get; set;}
         public DateTime QuestionDate {get; set;}
         public string UserID {get; set;}    // FK
         public List<Answer> Answers {get; set;}
