@@ -23,7 +23,14 @@ namespace Homework_3
 
         static void ListQuestions()
         {
-
+            using (var db = new AppDbContext())
+            {
+                var questions = db.Questions.Include(q => q);
+                foreach (var q in questions)
+                {
+                    Console.WriteLine(db.ToString());
+                }
+            }
         }
 
         static void ListUnanswered()
