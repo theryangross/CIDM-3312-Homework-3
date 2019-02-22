@@ -128,14 +128,15 @@ namespace Homework_3
                 }
                 else
                 {
-                    foreach (Question q in db.Questions)
+                    var listQ = db.Questions.Include(q => q.Answers);
+                    foreach (var q in listQ)
                     {
-                        Console.WriteLine(q.ToString());
-                        Console.WriteLine();
-                        foreach (Answer a in db.Answers)
+                        Console.WriteLine(q.ToString()); 
+                        foreach (var a in q.Answers)
                         {
-                            Console.WriteLine(a.ToString());
-                        }   
+                            Console.WriteLine("\t" + a);
+                            Console.WriteLine();
+                        }
                     }
                     
                 }
