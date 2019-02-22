@@ -217,7 +217,9 @@ namespace Homework_3
 
         static void Answer()
         {
-            if(db.Questions.Where(q => q.Questions.Count() == 0)
+            using (var db = new AppDbContext())
+            {
+            if(db.Questions.Count() == 0)
             {
                 Console.WriteLine($"There are no questions to answer.");
                 Console.WriteLine();
@@ -230,8 +232,7 @@ namespace Homework_3
             Console.WriteLine($"What is the QuestionID you want to answer? ");
             int QID = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine();
-            using (var db = new AppDbContext())
-            {
+            
                 try
                 {
                     if(db.Questions.Any(a => a.QuestionID == a.QuestionID))
