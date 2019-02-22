@@ -194,22 +194,18 @@ namespace Homework_3
                         db.Remove(QtoRemove);
                         db.SaveChanges();
                         Console.WriteLine($"Question {QtoRemove} has been removed.");
-                        Console.WriteLine();
-                        UserInput();
                     }
                     else
                     {
                         Console.WriteLine($"You can not delete questions you didn't ask.");
-                        Console.WriteLine();
-                        UserInput();
                     }
                 }
                 catch
                 {
                     Console.WriteLine($"That QuestionID is not valid.");
-                    Console.WriteLine();
-                    UserInput();
                 }
+                Console.WriteLine();
+                UserInput();
             }
         }
 
