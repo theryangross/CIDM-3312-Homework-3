@@ -134,7 +134,7 @@ namespace Homework_3
                         Console.WriteLine(q.ToString()); 
                         foreach (var a in q.Answers)
                         {
-                            Console.WriteLine("\t" + a);
+                            Console.WriteLine("\t" + a.ToString());
                             Console.WriteLine();
                         }
                     }
@@ -245,14 +245,14 @@ namespace Homework_3
                         Console.WriteLine($"That QuestionID is not vailid.");
                         
                     }
+                    Console.WriteLine();
+                    UserInput();
                 }
                 catch
                 {
                     Console.WriteLine();
                     UserInput();
                 }
-            Console.WriteLine();
-            UserInput();
             }
             }
         }
