@@ -7,6 +7,29 @@ namespace Homework_3
 {
     class Program
     {
+        static void Main(string[] args)
+        {
+            using (var db = new AppDbContext())
+            {
+            db.Database.EnsureDeleted();
+            db.Database.EnsureCreated();
+            } 
+
+        SeedDatabase();
+
+        Console.WriteLine($"Please Log in. ");
+        LogIn();
+        }
+
+        static void SeedDatabase()
+        {
+            using (var db = new AppDbContext())
+            {
+                List<User> Users = new List <User>();
+                List<Question> Questions = new List <Question>();
+                List<Answer> Answers = new List <Answer>();
+            }
+        }
         static void LogIn()
         {
             string email = "";
@@ -34,8 +57,13 @@ namespace Homework_3
 
                     db.Add(newUser);
                     db.SaveChanges();
+                    UserInput();
                 }
             }
+        }
+
+        static void UserInput()
+        {
                int UserChoice;
             Console.WriteLine("What do you want to do?");
             Console.WriteLine("Type 1 to list all questions");
@@ -72,11 +100,19 @@ namespace Homework_3
         {
             using (var db = new AppDbContext())
             {
-                var questions = db.Questions.Include(q => q);
-                foreach (var q in questions)
+                if(db.Questions.Count() == 0)
                 {
-                    Console.WriteLine(db.ToString());
+                    Console.WriteLine($"There are currently no questions.");
+                    UserInput();
                 }
+                else
+                {
+                    foreach (var q in db.Questions)
+                    {
+                        Console.WriteLine(q.ToString());
+                        UserInput();
+                    }
+                }  
             }
         }
 
@@ -84,27 +120,34 @@ namespace Homework_3
         {
                using (var db = new AppDbContext())
             {
-                var questions = db.Questions.Include(q => q).Where(q => q.Answers.Count() == 0);
-                foreach (var q in questions)
+                if(db.Questions.Count() == 0)
                 {
-                    Console.WriteLine(db.ToString());
+                    Console.WriteLine($"There are no unanswered questions to list.");
+                    UserInput();
+                }
+                else
+                {
+                    var questions = db.Questions.Where(q => q.Answers.Count() == 0);
+                    foreach (var q in questions)
+                    {
+                        Console.WriteLine(q.ToString());
+                        UserInput();
+                    }                
                 }
             }
         }
 
         static void AskQuestion()
         {
-            string UserAsk = "";
-
+            Question askQuestion = new Question();
             Console.WriteLine($"What is your question? ");
-            UserAsk = Console.ReadLine();
+            askQuestion.QuestionText = Console.ReadLine();
 
             using (var db = new AppDbContext())
             {
-                Question askQuestion = new Question {QuestionText = UserAsk};
-                // Question.User = db.Users.First();
-                db.Add(UserAsk);
+                db.Add(askQuestion);
                 db.SaveChanges();
+                UserInput();
             }
         }
 
@@ -115,15 +158,25 @@ namespace Homework_3
 
             using (var db = new AppDbContext())
             {
-                if(db.Users.Any(u => u.UserID == u.UserID)){
-                    Question QtoRemove = db.Questions.Find(ID);
-                    db.Remove(QtoRemove);
-                    db.SaveChanges();
-                    Console.WriteLine($"Question {QtoRemove} has been removed.");
-                }
-                else
+                try
                 {
-                    Console.WriteLine($"You can not delete questions you didn't ask.");
+                    if(db.Users.Any(u => u.UserID == u.UserID)){
+                        Question QtoRemove = db.Questions.Find(ID);
+                        db.Remove(QtoRemove);
+                        db.SaveChanges();
+                        Console.WriteLine($"Question {QtoRemove} has been removed.");
+                        UserInput();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"You can not delete questions you didn't ask.");
+                        UserInput();
+                    }
+                }
+                catch
+                {
+                    Console.WriteLine($"That QuestionID is not valid.");
+                    UserInput();
                 }
             }
         }
@@ -134,27 +187,30 @@ namespace Homework_3
 
             Console.WriteLine($"What is the QuestionID you want to answer? ");
             int QID = Convert.ToInt32(Console.ReadLine());
-
             using (var db = new AppDbContext())
             {
-                Question QtoAnswer = db.Questions.Find(QID);
-                UserAnswer = Console.ReadLine();
+                try
+                {
+                    if(db.Questions.Any(a => a.QuestionID == a.QuestionID))
+                    {
+                        Question QtoAnswer = db.Questions.Find(QID);
+                        Console.WriteLine($"Enter your answer: ");
+                        UserAnswer = Console.ReadLine();
 
-                db.Add(UserAnswer);
-                db.SaveChanges();
+                        db.Add(UserAnswer);
+                        db.SaveChanges();
+                    }
+                    else
+                    {
+                        Console.WriteLine($"That QuestionID is not vailid.");
+                        UserInput();
+                    }
+                }
+                catch
+                {
+                    UserInput();
+                }
             }
-        }
-
-
-        static void Main(string[] args)
-        {
-             using (var db = new AppDbContext())
-        {
-            db.Database.EnsureDeleted();
-            db.Database.EnsureCreated();
-        } 
-
-         
         }
     }
 }

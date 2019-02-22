@@ -33,7 +33,7 @@ public class AppDbContext : DbContext
 
         public override string ToString()
         {
-            return ($"{UserID}: {FirstName} {LastName}, {Email}, {RegistrationDate}");
+            return ($"ID: {UserID}: {FirstName} {LastName}, {Email}, {RegistrationDate}");
         }
     }
 
@@ -47,7 +47,7 @@ public class AppDbContext : DbContext
 
         public override string ToString()
         {
-            return ($"{QuestionID}: {QuestionText} - {QuestionDate}");
+            return ($"ID: {QuestionID}, User: {UserID} - {QuestionText} - {QuestionDate}");
         }
     }
 
@@ -61,7 +61,7 @@ public class AppDbContext : DbContext
 
         public override string ToString()
         {
-            return ($"{AnswerID}: {AnswerText} - {AnswerDate}");
+            return ($"ID: {AnswerID}: {AnswerText} - {AnswerDate}");
         }
     }
 }

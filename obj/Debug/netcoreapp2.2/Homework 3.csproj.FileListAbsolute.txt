@@ -1,0 +1,11 @@
+/Users/ryangross/Desktop/College/Junior Spring/Advanced Business Programming/Homework/Homework 3/bin/Debug/netcoreapp2.2/Homework 3.deps.json
+/Users/ryangross/Desktop/College/Junior Spring/Advanced Business Programming/Homework/Homework 3/bin/Debug/netcoreapp2.2/Homework 3.runtimeconfig.json
+/Users/ryangross/Desktop/College/Junior Spring/Advanced Business Programming/Homework/Homework 3/bin/Debug/netcoreapp2.2/Homework 3.runtimeconfig.dev.json
+/Users/ryangross/Desktop/College/Junior Spring/Advanced Business Programming/Homework/Homework 3/bin/Debug/netcoreapp2.2/Homework 3.dll
+/Users/ryangross/Desktop/College/Junior Spring/Advanced Business Programming/Homework/Homework 3/bin/Debug/netcoreapp2.2/Homework 3.pdb
+/Users/ryangross/Desktop/College/Junior Spring/Advanced Business Programming/Homework/Homework 3/obj/Debug/netcoreapp2.2/Homework 3.csprojAssemblyReference.cache
+/Users/ryangross/Desktop/College/Junior Spring/Advanced Business Programming/Homework/Homework 3/obj/Debug/netcoreapp2.2/Homework 3.csproj.CoreCompileInputs.cache
+/Users/ryangross/Desktop/College/Junior Spring/Advanced Business Programming/Homework/Homework 3/obj/Debug/netcoreapp2.2/Homework 3.AssemblyInfoInputs.cache
+/Users/ryangross/Desktop/College/Junior Spring/Advanced Business Programming/Homework/Homework 3/obj/Debug/netcoreapp2.2/Homework 3.AssemblyInfo.cs
+/Users/ryangross/Desktop/College/Junior Spring/Advanced Business Programming/Homework/Homework 3/obj/Debug/netcoreapp2.2/Homework 3.dll
+/Users/ryangross/Desktop/College/Junior Spring/Advanced Business Programming/Homework/Homework 3/obj/Debug/netcoreapp2.2/Homework 3.pdb
