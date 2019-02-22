@@ -138,10 +138,7 @@ namespace Homework_3
                         }   
                     }
                     
-                }  
-
-                Console.WriteLine();
-                
+                }
                 Console.WriteLine();
                 UserInput();
             }
