@@ -23,7 +23,7 @@ public class AppDbContext : DbContext
 
     public class User
     {
-        public string UserID {get; set;}    // PK
+        public int UserID {get; set;}    // PK
         public string FirstName {get; set;}
         public string LastName {get; set;}
         public string Email {get; set;}

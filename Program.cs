@@ -17,7 +17,9 @@ namespace Homework_3
 
         SeedDatabase();
 
+        Console.WriteLine();
         Console.WriteLine($"Please Log in. ");
+        Console.WriteLine();
         LogIn();
         }
 
@@ -47,12 +49,16 @@ namespace Homework_3
                 {
                     Console.WriteLine($"Your email does not exsist.");
                     User newUser = new User();
+                    Console.WriteLine();
                     Console.WriteLine($"Enter your first name: ");
                     newUser.FirstName = Console.ReadLine();
+                    Console.WriteLine();
                     Console.WriteLine($"Enter your last name: ");
                     newUser.LastName = Console.ReadLine();
+                    Console.WriteLine();
                     Console.WriteLine($"Enter your email: ");
                     newUser.Email = Console.ReadLine();
+                    Console.WriteLine();
                     newUser.RegistrationDate = DateTime.Now;
 
                     db.Add(newUser);
@@ -64,36 +70,48 @@ namespace Homework_3
 
         static void UserInput()
         {
-               int UserChoice;
+            string wrong = "";
+            int UserChoice;
+            Console.WriteLine();
             Console.WriteLine("What do you want to do?");
+            Console.WriteLine();
             Console.WriteLine("Type 1 to list all questions");
             Console.WriteLine("Type 2 to list only unanswered questions"); 
             Console.WriteLine("Type 3 to ask a question");
             Console.WriteLine("Type 4 to remove a question");
             Console.WriteLine("Type 5 to answer a question");
             
-            UserChoice = Convert.ToInt32(Console.ReadLine());
-            switch(UserChoice)
-            {
-                case 1:
-                    ListQuestions();
-                    break;
-                case 2:
-                    ListUnanswered();
-                    break;
-                case 3:
-                    AskQuestion();
-                    break;
-                case 4:
-                    RemoveQuestion();
-                    break;
-                case 5:
-                    Answer();
-                    break;
-                default:
-                    Console.WriteLine($"Unexpected value of ({UserChoice})");
-                    break;
+            
+            try{
+                UserChoice = Convert.ToInt32(Console.ReadLine());
+                Console.WriteLine();
+                switch(UserChoice)
+                {
+                    case 1:
+                        ListQuestions();
+                        break;
+                    case 2:
+                        ListUnanswered();
+                        break;
+                    case 3:
+                        AskQuestion();
+                        break;
+                    case 4:
+                        RemoveQuestion();
+                        break;
+                    case 5:
+                        Answer();
+                        break;
+                    default:
+                        Console.WriteLine($"Unexpected value of ({UserChoice})");
+                        break;
+                }
             }
+            catch
+            {
+                Console.WriteLine($"Unexpected value of ({wrong})");
+            }
+            
         }
 
         static void ListQuestions()
@@ -103,16 +121,24 @@ namespace Homework_3
                 if(db.Questions.Count() == 0)
                 {
                     Console.WriteLine($"There are currently no questions.");
-                    UserInput();
                 }
                 else
                 {
-                    foreach (var q in db.Questions)
+                    foreach (Question q in db.Questions)
                     {
                         Console.WriteLine(q.ToString());
-                        UserInput();
+                        Console.WriteLine();
+                    }
+                    foreach (Answer a in db.Answers)
+                    {
+                        Console.WriteLine(a.ToString());
                     }
                 }  
+
+                Console.WriteLine();
+                
+                Console.WriteLine();
+                UserInput();
             }
         }
 
@@ -123,7 +149,6 @@ namespace Homework_3
                 if(db.Questions.Count() == 0)
                 {
                     Console.WriteLine($"There are no unanswered questions to list.");
-                    UserInput();
                 }
                 else
                 {
@@ -131,10 +156,11 @@ namespace Homework_3
                     foreach (var q in questions)
                     {
                         Console.WriteLine(q.ToString());
-                        UserInput();
                     }                
                 }
             }
+            Console.WriteLine();
+            UserInput();
         }
 
         static void AskQuestion()
@@ -147,6 +173,7 @@ namespace Homework_3
             {
                 db.Add(askQuestion);
                 db.SaveChanges();
+                Console.WriteLine();
                 UserInput();
             }
         }
@@ -165,17 +192,20 @@ namespace Homework_3
                         db.Remove(QtoRemove);
                         db.SaveChanges();
                         Console.WriteLine($"Question {QtoRemove} has been removed.");
+                        Console.WriteLine();
                         UserInput();
                     }
                     else
                     {
                         Console.WriteLine($"You can not delete questions you didn't ask.");
+                        Console.WriteLine();
                         UserInput();
                     }
                 }
                 catch
                 {
                     Console.WriteLine($"That QuestionID is not valid.");
+                    Console.WriteLine();
                     UserInput();
                 }
             }
@@ -187,6 +217,7 @@ namespace Homework_3
 
             Console.WriteLine($"What is the QuestionID you want to answer? ");
             int QID = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine();
             using (var db = new AppDbContext())
             {
                 try
@@ -199,15 +230,19 @@ namespace Homework_3
 
                         db.Add(UserAnswer);
                         db.SaveChanges();
+                        Console.WriteLine();
+                        UserInput();
                     }
                     else
                     {
                         Console.WriteLine($"That QuestionID is not vailid.");
+                        Console.WriteLine();
                         UserInput();
                     }
                 }
                 catch
                 {
+                    Console.WriteLine();
                     UserInput();
                 }
             }
