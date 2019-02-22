@@ -17,6 +17,7 @@ namespace Homework_3
 
         SeedDatabase();
 
+// Asks user to log in by calling the LogIn method
         Console.WriteLine();
         Console.WriteLine($"Please Log in. ");
         Console.WriteLine();
@@ -32,6 +33,7 @@ namespace Homework_3
                 List<Answer> Answers = new List <Answer>();
             }
         }
+// LogIn method asks user for account information
         static void LogIn()
         {
             string email = "";
@@ -68,6 +70,7 @@ namespace Homework_3
             }
         }
 
+// UserInput asks user what they want to do and then uses switch to make it happen
         static void UserInput()
         {
             string wrong = "";
@@ -118,6 +121,7 @@ namespace Homework_3
             
         }
 
+// List questions and their answers underneath
         static void ListQuestions()
         {
             using (var db = new AppDbContext())
@@ -145,6 +149,7 @@ namespace Homework_3
             }
         }
 
+// list unswered questions
         static void ListUnanswered()
         {
                using (var db = new AppDbContext())
@@ -166,6 +171,7 @@ namespace Homework_3
             UserInput();
         }
 
+// Asks user what their question is and saves it to the database
         static void AskQuestion()
         {
             Question askQuestion = new Question();
@@ -181,6 +187,7 @@ namespace Homework_3
             }
         }
 
+// Removes the question from database
         static void RemoveQuestion()
         {
             Console.WriteLine($"What is the QuestionID of the question you want to remove? ");
@@ -210,6 +217,7 @@ namespace Homework_3
             }
         }
 
+// adds answer to a question
         static void Answer()
         {
             using (var db = new AppDbContext())
