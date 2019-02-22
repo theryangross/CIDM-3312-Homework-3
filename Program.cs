@@ -132,11 +132,12 @@ namespace Homework_3
                     {
                         Console.WriteLine(q.ToString());
                         Console.WriteLine();
+                        foreach (Answer a in db.Answers)
+                        {
+                            Console.WriteLine(a.ToString());
+                        }   
                     }
-                    foreach (Answer a in db.Answers)
-                    {
-                        Console.WriteLine(a.ToString());
-                    }
+                    
                 }  
 
                 Console.WriteLine();
