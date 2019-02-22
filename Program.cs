@@ -80,6 +80,7 @@ namespace Homework_3
             Console.WriteLine("Type 3 to ask a question");
             Console.WriteLine("Type 4 to remove a question");
             Console.WriteLine("Type 5 to answer a question");
+            Console.WriteLine("Type 0 to quit");
             
             
             try{
@@ -87,6 +88,9 @@ namespace Homework_3
                 Console.WriteLine();
                 switch(UserChoice)
                 {
+                    case 0:
+                        Console.WriteLine($"You have quit.");
+                        break;
                     case 1:
                         ListQuestions();
                         break;
@@ -213,6 +217,14 @@ namespace Homework_3
 
         static void Answer()
         {
+            if(db.Questions.Where(q => q.Questions.Count() == 0)
+            {
+                Console.WriteLine($"There are no questions to answer.");
+                Console.WriteLine();
+                UserInput();
+            }
+            else
+            {
              string UserAnswer = "";
 
             Console.WriteLine($"What is the QuestionID you want to answer? ");
@@ -230,14 +242,12 @@ namespace Homework_3
 
                         db.Add(UserAnswer);
                         db.SaveChanges();
-                        Console.WriteLine();
-                        UserInput();
+                    
                     }
                     else
                     {
                         Console.WriteLine($"That QuestionID is not vailid.");
-                        Console.WriteLine();
-                        UserInput();
+                        
                     }
                 }
                 catch
@@ -245,6 +255,9 @@ namespace Homework_3
                     Console.WriteLine();
                     UserInput();
                 }
+            Console.WriteLine();
+            UserInput();
+            }
             }
         }
     }
